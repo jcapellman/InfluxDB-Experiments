@@ -62,6 +62,31 @@ namespace InfluxDBShim.lib
             return true;
         }
 
+        public async Task<string> CreateTokenAsync(string organization, string bucketName)
+        {
+            if (_client == null)
+            {
+                throw new InvalidOperationException("Client was null");
+            }
+
+            var orgId = (await _client.GetOrganizationsApi().FindOrganizationsAsync(org: organization)).First().Id;
+
+            var retention = new BucketRetentionRules(BucketRetentionRules.TypeEnum.Expire, 3600);
+
+            var bucket = await _client.GetBucketsApi().CreateBucketAsync(bucketName, retention, orgId);
+
+            var resource = new PermissionResource(PermissionResource.TypeBuckets, bucket.Id, null, orgId);
+
+            var read = new Permission(Permission.ActionEnum.Read, resource);
+
+            var write = new Permission(Permission.ActionEnum.Write, resource);
+
+            var authorization = await _client.GetAuthorizationsApi()
+                .CreateAuthorizationAsync(orgId, new List<Permission> { read, write });
+
+            return authorization.Token;
+        }
+
         public void Dispose()
         {
             _client?.Dispose();
