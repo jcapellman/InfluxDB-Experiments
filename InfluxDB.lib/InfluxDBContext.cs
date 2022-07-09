@@ -8,9 +8,9 @@ namespace InfluxDBShim.lib
     {
         private InfluxDBClient? _client;
 
-        private readonly ILogger _logger;
+        private readonly ILogger? _logger;
 
-        public InfluxDBContext(ILogger logger)
+        public InfluxDBContext(ILogger? logger = null)
         {
             _logger = logger;
         }
@@ -19,7 +19,7 @@ namespace InfluxDBShim.lib
         {
             _client = InfluxDBClientFactory.Create(connectionString, token);
 
-            _logger.LogDebug("Initialized Client okay");
+            _logger?.LogDebug("Initialized Client okay");
 
             return true;
         }

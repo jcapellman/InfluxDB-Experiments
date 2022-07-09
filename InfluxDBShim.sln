@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfluxDBShim.lib", "InfluxDB.lib\InfluxDBShim.lib.csproj", "{9BE87BD7-71E6-432E-B867-369C8BAE74D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfluxDBShim.lib", "InfluxDB.lib\InfluxDBShim.lib.csproj", "{9BE87BD7-71E6-432E-B867-369C8BAE74D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfluxDB.Sample", "InfluxDB.Sample\InfluxDB.Sample.csproj", "{9AD3041E-B2E0-4AD5-A3F6-3655A65B59A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{9BE87BD7-71E6-432E-B867-369C8BAE74D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BE87BD7-71E6-432E-B867-369C8BAE74D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BE87BD7-71E6-432E-B867-369C8BAE74D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AD3041E-B2E0-4AD5-A3F6-3655A65B59A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AD3041E-B2E0-4AD5-A3F6-3655A65B59A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AD3041E-B2E0-4AD5-A3F6-3655A65B59A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AD3041E-B2E0-4AD5-A3F6-3655A65B59A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
