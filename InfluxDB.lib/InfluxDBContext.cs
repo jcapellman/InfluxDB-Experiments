@@ -36,6 +36,18 @@ namespace InfluxDBShim.lib
             return await queryApi.QueryAsync<T>(query);
         }
 
+        public async Task<List<T>> QueryAsync<T>(string measurementName, DateTime startTime, DateTime endTime)
+        {
+            var queryApi = _client?.GetQueryApi();
+
+            if (queryApi == null)
+            {
+                throw new InvalidOperationException("QueryAPI was null");
+            }
+
+            return await queryApi.QueryAsync<T>($"SELECT * FROM {measurementName} WHERE time > {startTime} AND time < {endTime}");
+        }
+
         public async Task<string> QueryRawStringAsync<T>(string query)
         {
             var queryApi = _client?.GetQueryApi();
