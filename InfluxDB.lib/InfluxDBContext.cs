@@ -1,5 +1,6 @@
 ﻿using InfluxDB.Client;
 using InfluxDB.Client.Api.Domain;
+
 using Microsoft.Extensions.Logging;
 
 namespace InfluxDBShim.lib
@@ -60,7 +61,7 @@ namespace InfluxDBShim.lib
             return await queryApi.QueryRawAsync(query);
         }
 
-        public async Task<bool> WriteAsync<T>(T newObject, WritePrecision precision = WritePrecision.Ns)
+        public async Task<bool> WriteAsync<T>(T newObject, string bucketName, string orgId, WritePrecision precision = WritePrecision.Ns)
         {
             var writeApi = _client?.GetWriteApiAsync();
 
@@ -69,7 +70,7 @@ namespace InfluxDBShim.lib
                 throw new InvalidOperationException("writeApi was null");
             }
 
-            await writeApi.WriteMeasurementAsync(newObject, precision, "bucket_name", "org_id");
+            await writeApi.WriteMeasurementAsync(newObject, precision, bucketName, orgId);
             
             return true;
         }
